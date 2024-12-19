@@ -1,0 +1,1 @@
+from .day1_mod import import_data, get_list, get_distance_list, get_distance
