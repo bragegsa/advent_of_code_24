@@ -63,3 +63,23 @@ def similarity_score(list1: list, list2: list) -> int:
             score += number * list2_dict[number]
     
     return score
+
+def run_day1():
+    '''
+        This function solves the task for day 1
+    '''
+
+    print("\n--- Day 1 ---")
+
+    data = import_data()
+
+    list1 = get_list(data, 'List 1')
+    list2 = get_list(data, 'List 2')
+
+    print(f'Distance is: {get_distance(list1, list2)}')
+    print(f'Similarity score is: {similarity_score(list1, list2)}')
+
+if __name__ == "__main__":
+    
+    print("\n--- Running module directly ---")
+    run_day1()
