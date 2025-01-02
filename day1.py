@@ -3,6 +3,8 @@ from modules import get_list, get_distance, import_data, similarity_score
 
 def run_day1():
 
+    print("\n--- Day 1 ---")
+
     data = import_data()
 
     list1 = get_list(data, 'List 1')
