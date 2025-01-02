@@ -23,10 +23,9 @@ def get_list(df: pd.core.frame.DataFrame, columnName: str) -> list:
 
     return list_sorted
 
-def get_distance_list(list1: list, list2: list) -> list:
+def get_distance(list1: list, list2: list) -> int:
     '''
-        Takes in two lists and returns a list containing the absolute 
-        distance between the corresponding elements in the lists
+        Takes in two lists and returns the distance between them
     '''
 
     distance_list = []
@@ -34,12 +33,33 @@ def get_distance_list(list1: list, list2: list) -> list:
     for x, y in zip(list1, list2):
         distance_list.append(abs(x - y))
 
-    return distance_list
+    distance = sum(distance_list)
+
+    return distance
+
+def list_to_dictionary(list_to_transform: list) -> dict:
+
+    dictionary = dict.fromkeys(set(list_to_transform), 0)
+
+    for number in list_to_transform:
+
+        dictionary[number] += 1
+
+    return dictionary
 
 
-def get_distance(distance_list: list) -> int:
+def similarity_score(list1: list, list2: list) -> int:
     '''
-        Takes in a list and returns the sum
+        Takes list1 and determines a similarity score with list2
     '''
 
-    return sum(distance_list)
+    score = 0
+
+    list2_dict = list_to_dictionary(list2)
+
+    for number in list1:
+
+        if number in list2_dict:
+            score += number * list2_dict[number]
+    
+    return score
