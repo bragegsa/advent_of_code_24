@@ -1,6 +1,5 @@
 import re
 import numpy as np
-from .day3_lib import import_data_day3
 
 def format_data(data: str) -> list:
     '''
@@ -12,26 +11,26 @@ def format_data(data: str) -> list:
 
     return data_formatted
 
-def xmas_search(data: list) -> int:
+def xmas_search(data: list, regex_word: str = 'XMAS') -> int:
     ''' 
         Returns the number of times XMAS is written from left to right
 
         Args:
             data: a list of strings
+            regex_word: word to search for
 
         Returns:
             sum: number of times expressions are found
     '''
 
     # Use two regex expressions to find overlapping strings
-    regex_xmas = 'XMAS'
-    regex_samx = 'SAMX'
+    regex_word_reverse = regex_word[::-1]
     sum = 0
 
     for row in data:
 
-        sum += len(re.findall(regex_xmas, row))
-        sum += len(re.findall(regex_samx, row))
+        sum += len(re.findall(regex_word, row))
+        sum += len(re.findall(regex_word_reverse, row))
 
     return sum
 
@@ -71,7 +70,6 @@ def rotate_list90(list_of_strings: list) -> list:
     '''
 
     matrix = [list(row[:]) for row in list_of_strings]
-    m, n = np.shape(matrix)
 
     matrix_rotated = np.rot90(matrix)
     list_rotated = []
@@ -106,6 +104,43 @@ def search_matrix(data: np.array) -> int:
 
     return total
 
+def matrix_search(data: list, regex_word: str = 'MAS') -> int:
+    '''
+        Returns the number of times a spesific word appears in an X-formation
+        in a list of strings
+
+        Args:
+            data: list of strings
+            regex_word: string to be found in X formation (Has to be odd)
+        
+        Returns:
+            total: total number of times X formation appears
+    '''
+
+    matrix = [list(row[:]) for row in data]
+    m,n = np.shape(matrix)
+    total = 0
+    padding = int(len(regex_word)/2)
+    centre_letter = regex_word[int(len(regex_word)/2)]
+
+    for i in range(padding, m-padding):
+
+        for j in range(padding, n - padding):
+
+            if(matrix[i][j] == centre_letter):
+
+                window = [''.join(s[j-padding:j+padding+1]) for s in matrix[i-padding:i+padding+1]]
+                window_rotated = rotate_list90(window)
+
+                if (xmas_search(get_diagonals(window), regex_word) == 
+                    xmas_search(get_diagonals(window_rotated), regex_word) and 
+                    xmas_search(get_diagonals(window), regex_word) == 1):
+
+                    total += 1
+
+
+    return total
+
 
 def run_day4():
     '''
@@ -117,8 +152,14 @@ def run_day4():
     data = import_data_day3(path='inputs/day4.txt')
     data_formatted = format_data(data)
     print(f'The number of times XMAS appears: {search_matrix(data_formatted)}')
+    print(f'The total number of X-MAS is: {matrix_search(data_formatted)}')
    
 if __name__ == "__main__":
 
+    from day3_lib import import_data_day3
+    
     print("\n--- Running module directly ---")
     run_day4()
+
+else:
+    from .day3_lib import import_data_day3
