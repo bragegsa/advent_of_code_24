@@ -1,7 +1,7 @@
 # Advent of Code 2024
 This is a solution of advent of code 2024. The tasks can be found here: 
 
-- [Advent of Code]{https://adventofcode.com/} 
+- [Advent of Code](https://adventofcode.com/)
 
 ## How to run:
 
