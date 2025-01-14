@@ -1,4 +1,4 @@
-# Advent of Code 2024
+# Advent of Code 2024 -Solutions in Python and C++
 This is a solution of advent of code 2024. The tasks can be found here: 
 
 - [Advent of Code](https://adventofcode.com/)
@@ -9,13 +9,26 @@ The all_solutions.py script presents all solutions for the different daily tasks
 
 To present the solutions for the other daily tasks, run the C++ project.
 
-## Packages needed 
-
+### Packages needed for python project
 The python project uses the following packages:
 
 - ![NumPy](https://img.shields.io/badge/NumPy-2.2.0%2B-blue)
 - ![Pandas](https://img.shields.io/badge/Pandas-2.2.3%2B-green)
 - ![re](https://img.shields.io/badge/re-module-blue)
+
+
+### How to build C++ project
+
+To build the C++ project, you need to do the following:
+
+```bash
+# Build the project
+make
+
+# Run the project
+./main
+
+```
 
 ## Structure
 
