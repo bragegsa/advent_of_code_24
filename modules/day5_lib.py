@@ -171,7 +171,7 @@ def fix_incorrect_updates(remaining_updates: list, rules:list) -> tuple[list, li
 
 def run_day5():
     '''
-        This function solves the task for day 3
+        This function solves the task for day 5
     '''
 
     print("\n--- Day 5 ---")
