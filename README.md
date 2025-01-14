@@ -30,6 +30,14 @@ make
 
 ```
 
+If you want to remove the generated executable, run the following:
+
+```bash
+# Remove generated executable
+make clean
+
+```
+
 ## Structure
 
 The project is split into two parts. The first 5 daily tasks are done in python and the other days are done in C++.
