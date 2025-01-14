@@ -49,6 +49,6 @@ This folder includes a module for each of the daily puzzles. Each module can be 
 
 This folder includes a module for each of the daily puzzles from day 6 and onwards. To run these modules, run the C++ project.
 
-## inputs
+### inputs
 
 This folder includes the input data for the different daily tasks.
