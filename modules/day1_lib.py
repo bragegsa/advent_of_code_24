@@ -1,16 +1,19 @@
 import pandas as pd
 
+
 def import_data(path: str = 'inputs/day1.csv') -> pd.core.frame.DataFrame:
     '''
-        Takes in the path of a csv file and returns a 
-        dataframe of the given data. 
+        Takes in the path of a csv file and returns a
+        dataframe of the given data.
     '''
 
     data = pd.read_csv(path, header=None, names=['pair'])
-    data[['List 1', 'List 2']] = data['pair'].str.split(expand=True).astype(int)
+    data[['List 1', 'List 2']] = data['pair'].str.split(
+        expand=True).astype(int)
     data = data.drop(columns=['pair'])
 
     return data
+
 
 def get_list(df: pd.core.frame.DataFrame, columnName: str) -> list:
     '''
@@ -22,6 +25,7 @@ def get_list(df: pd.core.frame.DataFrame, columnName: str) -> list:
     list_sorted = sorted(list_unsorted)
 
     return list_sorted
+
 
 def get_distance(list1: list, list2: list) -> int:
     '''
@@ -36,6 +40,7 @@ def get_distance(list1: list, list2: list) -> int:
     distance = sum(distance_list)
 
     return distance
+
 
 def list_to_dictionary(list_to_transform: list) -> dict:
 
@@ -61,8 +66,9 @@ def similarity_score(list1: list, list2: list) -> int:
 
         if number in list2_dict:
             score += number * list2_dict[number]
-    
+
     return score
+
 
 def run_day1():
     '''
@@ -79,7 +85,8 @@ def run_day1():
     print(f'Distance is: {get_distance(list1, list2)}')
     print(f'Similarity score is: {similarity_score(list1, list2)}')
 
+
 if __name__ == "__main__":
-    
+
     print("\n--- Running module directly ---")
     run_day1()

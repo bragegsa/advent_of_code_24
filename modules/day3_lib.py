@@ -1,6 +1,7 @@
 import pandas as pd
 import re
 
+
 def import_data_day3(path: str = 'inputs/day3.txt') -> str:
     '''
         Returns content of a txt file as a string
@@ -18,6 +19,7 @@ def import_data_day3(path: str = 'inputs/day3.txt') -> str:
 
     return data
 
+
 def filter_data(data: list, extra_instructions: bool = False) -> list:
     '''
         Takes a string of data and finds all operations with
@@ -34,14 +36,15 @@ def filter_data(data: list, extra_instructions: bool = False) -> list:
     list_of_operations = []
 
     if extra_instructions:
-        regex = 'mul\([0-9]{1,3}\,[0-9]{1,3}\)|do\(\)|don\'t\(\)'
+        regex = 'mul\\([0-9]{1,3}\\,[0-9]{1,3}\\)|do\\(\\)|don\'t\\(\\)'
     else:
-        regex = 'mul\([0-9]{1,3}\,[0-9]{1,3}\)'
+        regex = 'mul\\([0-9]{1,3}\\,[0-9]{1,3}\\)'
 
     mul_operations = re.findall(regex, data)
     list_of_operations.extend(mul_operations)
 
     return list_of_operations
+
 
 def compute_mul(operations: list) -> int:
     '''
@@ -61,10 +64,10 @@ def compute_mul(operations: list) -> int:
     for operation in operations:
 
         product = 1
-        numbers = re.findall(regex, operation)    
+        numbers = re.findall(regex, operation)
 
         if operation == 'do()':
-        
+
             skip = False
 
         elif operation == 'don\'t()':
@@ -76,10 +79,11 @@ def compute_mul(operations: list) -> int:
             for number in numbers:
 
                 product *= int(number)
-        
-            sum += product    
+
+            sum += product
 
     return sum
+
 
 def run_day3():
     '''
@@ -88,7 +92,7 @@ def run_day3():
 
     print("\n--- Day 3 ---")
 
-    data =import_data_day3()
+    data = import_data_day3()
     operations = filter_data(data)
     sum = compute_mul(operations)
     print(f'The sum of all Mul computations is: {sum}')
@@ -96,7 +100,8 @@ def run_day3():
     operations_part2 = filter_data(data, extra_instructions=True)
     sum_part2 = compute_mul(operations_part2)
     print(f'The sum of all Mul computations is: {sum_part2}')
-   
+
+
 if __name__ == "__main__":
 
     print("\n--- Running module directly ---")
