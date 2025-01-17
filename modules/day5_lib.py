@@ -15,7 +15,7 @@ def format_data(data: list) -> tuple[list, dict]:
 
     data_formatted = data.split('\n')
     
-    regex_line = '[0-9]{1,2}\|[0-9]{2}'
+    regex_line = r'[0-9]{1,2}\|[0-9]{2}'
     rules_non_filtered = re.findall(regex_line, data)
 
     updates = [x.split(',') for x in data_formatted if x not in rules_non_filtered and x != '']
