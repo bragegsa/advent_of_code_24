@@ -188,13 +188,15 @@ def run_day5():
     updates, rules = format_data(data)
     results = check_updates(updates, rules)
     print(
-        f'The sum of middle page number of all correctly ordered updates: {result_sum(updates, results)}')
+        f'The sum of middle page number of all correctly ordered updates: 
+        {result_sum(updates, results)}')
 
     remaining_updates = incorrect_updates(updates, results)
     fixed_updates, results_fixed = fix_incorrect_updates(
         remaining_updates, rules)
     print(
-        f'The sum of middle page number of all correctly ordered updates: {result_sum(fixed_updates, results_fixed)}')
+        f'The sum of middle page number of all correctly ordered updates: 
+        {result_sum(fixed_updates, results_fixed)}')
 
 
 if __name__ == "__main__":
