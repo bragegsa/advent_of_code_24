@@ -14,7 +14,7 @@ The python project uses the following packages:
 
 - ![NumPy](https://img.shields.io/badge/NumPy-2.2.0%2B-blue)
 - ![Pandas](https://img.shields.io/badge/Pandas-2.2.3%2B-green)
-- ![PyTest](https://img.shields.io/badge/PyTest-7.4.0%2B-green)
+- ![PyTest](https://img.shields.io/badge/PyTest-8.3.4%2B-green)
 - ![re](https://img.shields.io/badge/re-module-blue)
 
 
