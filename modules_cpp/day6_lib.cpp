@@ -99,7 +99,7 @@ std::tuple<std::vector<std::vector<char>>, bool, std::vector<int>> calculate_pat
 
     if (current_position[2] == 4) {
         position = guard_position(guard_matrix); 
-        std::cout << "Found new position! " << std::endl;
+        // std::cout << "Found new position! " << std::endl;
     } else {
         position = current_position;
     }
@@ -221,10 +221,10 @@ int count_positions(std::vector<std::vector<char>> guard_matrix) {
  * 
  * @param guard_matrix the matrix of data without path.
  */
-std::vector<std::vector<char>> remove_guard(std::vector<std::vector<char>> guard_matrix) {
+std::vector<std::vector<char>> remove_guard(std::vector<std::vector<char>> guard_matrix, std::vector<int> current_position) {
 
-    std::vector<int> position = guard_position(guard_matrix); 
-    guard_matrix[position[0]][position[1]] = 'X';
+    // std::vector<int> position = guard_position(guard_matrix); 
+    guard_matrix[current_position[0]][current_position[1]] = 'X';
 
     return guard_matrix;
 }
@@ -260,9 +260,9 @@ int place_obstacle(std::vector<std::vector<char>> guard_matrix, std::vector<std:
                     
                     auto [new_guard_matrix_temp, patrol_ended_temp, current_position_temp] = calculate_path(guard_matrix_test, current_position);
                     patrol_ended = patrol_ended_temp;
-                    current_position = current_position_temp;
                     
-                    if (remove_guard(new_guard_matrix_temp) == remove_guard(guard_matrix_test) && patrol_ended == false) {                        
+                    
+                    if (remove_guard(new_guard_matrix_temp, current_position_temp) == remove_guard(guard_matrix_test, current_position) && patrol_ended == false) {                        
                         if(loop_checker == 4) {
                             patrol_ended = true;
                             number_of_loops = number_of_loops + 1;
@@ -272,6 +272,7 @@ int place_obstacle(std::vector<std::vector<char>> guard_matrix, std::vector<std:
                         
                     }
 
+                    current_position = current_position_temp;
                     guard_matrix_test = new_guard_matrix_temp;
                     
                 } 
