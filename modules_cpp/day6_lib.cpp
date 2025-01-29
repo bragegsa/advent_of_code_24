@@ -199,6 +199,74 @@ int count_positions(std::vector<std::vector<char>> guard_matrix) {
 }
 
 /**
+ * @brief returns the guard_matrix where the guard has been replaced by a path
+ * 
+ * @param guard_matrix the matrix of data without path.
+ */
+std::vector<std::vector<char>> remove_guard(std::vector<std::vector<char>> guard_matrix) {
+
+    std::vector<int> position = guard_position(guard_matrix); 
+    guard_matrix[position[0]][position[1]] = 'X';
+
+    return guard_matrix;
+}
+
+/**
+ * @brief returns the number of loops by placing obstacle
+ * 
+ * @param guard_matrix the matrix of data without path.
+ * @return guard_matrix_with_path the matrix of data with path
+ */
+int place_obstacle(std::vector<std::vector<char>> guard_matrix, std::vector<std::vector<char>> guard_matrix_with_path) {
+
+    std::vector<std::vector<char>> guard_matrix_test = guard_matrix;
+    std::vector<int> start_position = guard_position(guard_matrix);
+    
+    bool patrol_ended = false;
+    int number_of_loops = 0;
+
+    int loop_checker = 0;
+
+    for (int i = 0; i < guard_matrix_with_path.size(); i++) {
+
+        for (int j = 0; j < guard_matrix[0].size(); j++) {
+
+            if (guard_matrix_with_path[i][j] == 'X' && guard_matrix[i][j] == '.') {
+
+                loop_checker = 0;
+                guard_matrix_test[i][j] = '#';
+
+                while (patrol_ended == false) {
+                    auto calculated_path = calculate_path(guard_matrix_test);
+                    patrol_ended = calculated_path.second;
+                    
+                    
+                    if (remove_guard(calculated_path.first) == remove_guard(guard_matrix_test) && patrol_ended == false) {                        
+                        if(loop_checker == 4) {
+                            patrol_ended = true;
+                            number_of_loops = number_of_loops + 1;
+                        } else {
+                            loop_checker = loop_checker + 1;
+                        }
+                        
+                    }
+
+                    guard_matrix_test = calculated_path.first;
+                    
+                } 
+
+                guard_matrix_test = guard_matrix;
+                patrol_ended = false;
+
+            }
+        }
+    }
+
+    return number_of_loops;
+
+}
+
+/**
  * @brief calculates the path and prints the number of positions visited by the guard.
  * 
  * @param guard_matrix the matrix of data.
@@ -219,5 +287,8 @@ void guard_patrol(std::vector<std::vector<char>> guard_matrix) {
 
     int number_of_positions = count_positions(new_guard_matrix);
     std::cout << "Number of distinct positions: " << number_of_positions << std::endl;
+
+    int number_of_loops = place_obstacle(guard_matrix, new_guard_matrix);
+    std::cout << "The number of positions that create a loop is: " << number_of_loops << std::endl;
 
 }
