@@ -18,6 +18,6 @@ std::tuple<std::vector<std::vector<char>>, bool, std::vector<int>> calculate_pat
 int count_positions(std::vector<std::vector<char>> guard_matrix);
 void guard_patrol(std::vector<std::vector<char>> guard_matrix);
 std::vector<std::vector<char>> remove_guard(std::vector<std::vector<char>> guard_matrix);
-// void place_obstacle(std::vector<std::vector<char>>  guard_matrix);
+void place_obstacle(std::vector<std::vector<char>>  guard_matrix);
 
 #endif
