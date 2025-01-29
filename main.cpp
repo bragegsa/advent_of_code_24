@@ -1,7 +1,6 @@
 #include "main.h"
 #include "modules_cpp/day6_lib.h" 
 
-
 /**
  * @brief This function solves the task for day 6.
 **/
